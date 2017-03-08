@@ -5,11 +5,11 @@
 	Vector((x), (y), (z))
 
 Vector Vector::add(const Vector& _) const {
-    return vectorMake(x + _.x, y + _.y, z + _.z);
+	return vectorMake(x + _.x, y + _.y, z + _.z);
 }
 
 Vector Vector::subtract(const Vector& _) const {
-    return vectorMake(x - _.x, y - _.y, z - _.z);
+	return vectorMake(x - _.x, y - _.y, z - _.z);
 }
 
 Vector Vector::multiply(double k) const {
@@ -21,7 +21,7 @@ double Vector::squareModulus() const {
 }
 
 double Vector::modulus() const {
-    return sqrt(squareModulus());
+	return sqrt(squareModulus());
 }
 
 double Vector::dot(const Vector& _) const {
@@ -29,9 +29,9 @@ double Vector::dot(const Vector& _) const {
 }
 
 Vector Vector::cross(const Vector&_) const {
-    double x1 = x,		y1 = y,		z1 = z;
-    double x2 = _.x,	y2 = _.y,	z2 = _.z;
-    return vectorMake(
+	double x1 = x,		y1 = y,		z1 = z;
+	double x2 = _.x,	y2 = _.y,	z2 = _.z;
+	return vectorMake(
 			y1 * z2 - y2 * z1,
 			z1 * x2 - x1 * z2,
 			x1 * y2 - x2 * y1);
@@ -51,6 +51,6 @@ Vector Vector::project(const Vector& _) const {
 }
 
 double Vector::span(const Vector& _) const {
-    double cosine = operator&(_) / modulus() / !_;
-    return acos(cosine);
+	double cosine = operator&(_) / modulus() / !_;
+	return acos(cosine);
 }

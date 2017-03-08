@@ -36,18 +36,18 @@ Vector vectorize(const char* arg) {
 }
 
 std::ostream& operator<<(std::ostream& o, const Vector& _) {
-    return o << "(" << _.x << "," << _.y << "," << _.z << ")";
+	return o << "(" << _.x << "," << _.y << "," << _.z << ")";
 }
 
 std::ostream& operator<<(std::ostream& o, const Matrix& _) {
-    o << "[" << std::endl;
-    for(int i = 0; i < 4; i ++) {
+	o << "[" << std::endl;
+	for(int i = 0; i < 4; i ++) {
 		o << "  [";
 		o << _.m[i][0];
 		for(int j = 1; j < 4; j ++) {
 			o << "," << _.m[i][j];
 		}
 		o << "]" << std::endl;
-    }
+	}
 	return o << "]";
 }

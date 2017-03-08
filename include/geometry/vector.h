@@ -71,14 +71,14 @@ public:
 	// you are actually querying for the projection
 	// of aVec onto bVec.
 	Vector project(const Vector&) const;
-    inline Vector operator|(const Vector& _) const {
+	inline Vector operator|(const Vector& _) const {
 		return project(_);
-    }
+	}
 
-    double span(const Vector&) const;
-    inline double operator^(const Vector& _) const {
+	double span(const Vector&) const;
+	inline double operator^(const Vector& _) const {
 		return span(_);
-    }
+	}
 };
 
 // The value multiply should be commutative.
