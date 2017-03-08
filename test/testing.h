@@ -23,5 +23,6 @@
 		return 0;\
 	}\
 	catch(std::logic_error e) {\
+		std::cout << e.what() << std::endl;\
 		return 1;\
 	}

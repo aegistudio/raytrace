@@ -6,7 +6,7 @@
 // As we are using 3-d vectors, the matrix should be of 4-d.
 // The transform would perform like:
 // | M t || v | - | Mv + t | - Clip - | (Mv + t) / (vq + r) |
-// | q r || 1 | - | vq + 1 | -------- |	         1          |
+// | q r || 1 | - | vq + 1 | -------- |          1          |
 
 class Matrix {
 public:

@@ -2,12 +2,12 @@
 #include "testing.h"
 
 Maybe<std::string> stubFunction(std::string expect) {
-    return Maybe<std::string>(expect);
+	return Maybe<std::string>(expect);
 }
 
 Maybe<std::string> cascadeFunction(std::string expect, int layer) {
-    if(layer > 0) return cascadeFunction(expect, layer - 1);
-    else return stubFunction(expect);
+	if(layer > 0) return cascadeFunction(expect, layer - 1);
+	else return stubFunction(expect);
 }
 
 void testJust() {

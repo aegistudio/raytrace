@@ -10,7 +10,7 @@ public:
 	Maybe(const Maybe& copy) : value(copy.value){
 		// You can't make a deep copy of Maybe,
 		// however you can shift copy it.
-        throw std::logic_error();
+		throw std::logic_error();
 	}
 
 	Maybe(Maybe&& _) : value(_.value) {
@@ -26,6 +26,6 @@ public:
 	};
 
 	inline const T& operator*() {
-        return *value;
+		return *value;
 	}
 };
