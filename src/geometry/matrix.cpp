@@ -14,7 +14,7 @@ static int matrixBias[4][4] = {
 	{0, 1, 2},	// Remove 3 from the rotation
 };
 
-double Matrix::discriminant3(int dx, int dy) const {
+double Matrix::determinant3(int dx, int dy) const {
 	// Initialize the pick-up.
 	int* ip = matrixBias[dx];
 	int* jp = matrixBias[dy];
@@ -31,20 +31,20 @@ double Matrix::discriminant3(int dx, int dy) const {
 	#pragma pop(_M)
 }
 
-double Matrix::discriminant() const {
+double Matrix::determinant() const {
 	#pragma push(_DM)
 	#define _DM(x)\
-		m[0][x] * discriminant3(0, x);
+		m[0][x] * determinant3(0, x);
 	return _DM(0) + _DM(1) + _DM(2) + _DM(3);
 	#pragma pop(_DM)
 }
 
 Matrix Matrix::invert() const {
-	double dall = discriminant();
+	double dall = determinant();
 	double result[4][4];
 	for(int i = 0; i < 4; i ++)
 		for(int j = 0; j < 4; j ++)
-			result[j][i] = discriminant3(i, j) / dall;
+			result[j][i] = determinant3(i, j) / dall;
 	return Matrix(result);
 }
 

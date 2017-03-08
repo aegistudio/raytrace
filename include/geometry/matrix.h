@@ -14,11 +14,11 @@ public:
 	Matrix(const double _[4][4]);
 	~Matrix() {}
 
-	// Retrieve the discriminant of this matrix.
-	double discriminant3(int, int) const;
-	double discriminant() const;
+	// Retrieve the determinant of this matrix.
+	double determinant3(int, int) const;
+	double determinant() const;
 	inline double operator*() const {
-		return discriminant();
+		return determinant();
 	}
 
 	// Multiplex a transform by a former transform.
