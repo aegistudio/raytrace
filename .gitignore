@@ -1,0 +1,13 @@
+bin
+testbin
+Testing
+
+CMakeFiles
+*.cmake
+CMakeCache.txt
+
+*.cbp
+*.layout
+Makefile
+
+*.tcl
