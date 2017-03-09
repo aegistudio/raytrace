@@ -22,11 +22,11 @@ public:
 	Transform() {}
 	virtual ~Transform() {}
 
-	virtual Maybe<Vector> intersect(const Vector&, const Vector&) = 0;
+	virtual Maybe<Vector> intersect(const Vector&, const Vector&);
 
-	virtual Vector normal(const Vector&) = 0;
+	virtual Vector normal(const Vector&);
 
-	virtual Vector joint(const Vector&) = 0;
+	virtual Vector joint(const Vector&);
 };
 
 
@@ -41,5 +41,5 @@ protected:
 	virtual const Matrix& invertRemain() const { return m_invertRemain; }
 public:
 	DefaultTransform(const Matrix&, const std::function<Geometry&()>);
-	~DefaultTransform() {}
+	virtual ~DefaultTransform() {}
 };

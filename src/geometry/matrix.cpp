@@ -26,7 +26,7 @@ double Matrix::determinant3(int dx, int dy) const {
 	#define _MX(i, j, k) _M(0, i)\
 		* (_M(1, j) * _M(2, k) - _M(1, k) * _M(2, j))
 
-	return _MX(0, 1, 2) - _MX(1, 2, 0) + _MX(2, 0, 1);
+	return _MX(0, 1, 2) + _MX(1, 2, 0) + _MX(2, 0, 1);
 	#pragma pop(_MX)
 	#pragma pop(_M)
 }
@@ -132,4 +132,14 @@ Matrix Matrix::yRotate(double _) {
 		{0,	   0,	   0, 1},
 	};
 	return Matrix(result);
+}
+
+Matrix Matrix::rebase(const Vector& x, const Vector& y, const Vector& z) {
+    double result[4][4] = {
+		{x.x, x.y, x.z, 0},
+		{y.x, y.y, y.z, 0},
+		{z.x, z.y, z.z, 0},
+		{0,   0,   0,   1}
+    };
+    return Matrix(result).invert();
 }

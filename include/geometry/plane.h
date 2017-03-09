@@ -15,9 +15,9 @@ public:
 	Plane(const Vector&, const Vector&);
 	virtual ~Plane() {}
 
-	virtual Maybe<Vector> intersect(Vector, Vector);
+	virtual Maybe<Vector> intersect(const Vector&, const Vector&);
 
-	virtual Vector normal(Vector);
+	virtual Vector normal(const Vector&);
 
-	virtual Vector joint(Vector);
+	virtual Vector joint(const Vector&);
 };

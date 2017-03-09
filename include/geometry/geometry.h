@@ -16,14 +16,15 @@
 
 class Geometry {
 public:
+	virtual ~Geometry() {}
 	// Query for the UV coordinate. The UV coordinate
 	// has its own meaning in different geometric body
 	// but should be a map to normal and joint.
-	virtual Maybe<Vector> intersect(Vector, Vector = {0,0,0}) = 0;
+	virtual Maybe<Vector> intersect(const Vector&, const Vector& = {0,0,0}) = 0;
 
 	// Query for the normal vector.
-	virtual Vector normal(Vector uv) = 0;
+	virtual Vector normal(const Vector& uv) = 0;
 
 	// Query for the conjunction point.
-	virtual Vector joint(Vector uv) = 0;
+	virtual Vector joint(const Vector& uv) = 0;
 };

@@ -53,5 +53,5 @@ add_executable(planeTest common.cpp planeTest.cpp geomtest.cpp)
 target_link_libraries(planeTest geometry)
 
 # Add the tests for plane.
-add_testcasep(geometry planeTest test0)
-add_testcasep(geometry planeTest test1)
+add_testcasep(geometry planeTest testNormal)
+add_testcasep(geometry planeTest testTransform)

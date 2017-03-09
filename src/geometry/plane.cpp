@@ -1,12 +1,10 @@
 #include "geometry/plane.h"
 #include "geometry/matrix.h"
 
-#include <iostream>
-
 Plane::Plane(const Vector& _x, const Vector& _y):
 	x(_x), y(_y), z(~(_x * _y)) {}
 
-Maybe<Vector> Plane::intersect(Vector d, Vector c) {
+Maybe<Vector> Plane::intersect(const Vector& d, const Vector& c) {
 	double coefficient = d & z;
 	if(coefficient != 0) {
 		double formulaArray[4][4] = {
@@ -17,6 +15,7 @@ Maybe<Vector> Plane::intersect(Vector d, Vector c) {
 		};
 		Matrix formula(formulaArray);
 		Vector v = (~formula) * c;
+
 		if(v.z > 0) return Maybe<Vector>();
 		else return Vector(v.x, v.y,
 			coefficient > 0? v.z : -v.z);
@@ -24,11 +23,11 @@ Maybe<Vector> Plane::intersect(Vector d, Vector c) {
 	else return Maybe<Vector>();
 }
 
-Vector Plane::normal(Vector uv) {
+Vector Plane::normal(const Vector& uv) {
 	if(uv.z == 0) return Vector(0, 0, 0);
 	else return uv.z > 0? z : -z;
 }
 
-Vector Plane::joint(Vector uv) {
+Vector Plane::joint(const Vector& uv) {
 	return uv.x * x + uv.y * y;
 }
