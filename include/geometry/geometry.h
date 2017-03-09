@@ -22,8 +22,16 @@ public:
 	// but should be a map to normal and joint.
 	virtual Maybe<Vector> intersect(const Vector&, const Vector& = {0,0,0}) = 0;
 
+	// The normal will be calculated from the outer product
+	// of tangent vectors. Which means N = t0 * t1.
+	virtual Vector tangent0(const Vector& uv) = 0;
+
+	virtual Vector tangent1(const Vector& uv) = 0;
+
 	// Query for the normal vector.
-	virtual Vector normal(const Vector& uv) = 0;
+	inline Vector normal(const Vector& uv) {
+		return ~(tangent0(uv) * tangent1(uv));
+	};
 
 	// Query for the conjunction point.
 	virtual Vector joint(const Vector& uv) = 0;

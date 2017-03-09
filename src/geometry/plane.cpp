@@ -23,9 +23,14 @@ Maybe<Vector> Plane::intersect(const Vector& d, const Vector& c) {
 	else return Maybe<Vector>();
 }
 
-Vector Plane::normal(const Vector& uv) {
+Vector Plane::tangent0(const Vector& uv) {
 	if(uv.z == 0) return Vector(0, 0, 0);
-	else return uv.z > 0? z : -z;
+	else return uv.z > 0? x : y;
+}
+
+Vector Plane::tangent1(const Vector& uv) {
+	if(uv.z == 0) return Vector(0, 0, 0);
+	else return uv.z > 0? y : x;
 }
 
 Vector Plane::joint(const Vector& uv) {

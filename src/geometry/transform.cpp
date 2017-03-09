@@ -1,11 +1,19 @@
 #include "geometry/transform.h"
 
 Maybe<Vector> Transform::intersect(const Vector& direction, const Vector& origin) {
-	return geometry().intersect(~(invertRemain() * direction), invertMatrix() * origin);
+    Matrix inverse = invert();
+    Vector realOrigin = inverse * origin;
+    Vector realBias = (inverse * (direction + origin));
+	Vector realDirection = realBias - realOrigin;
+	return geometry().intersect(~(realDirection), realOrigin);
 }
 
-Vector Transform::normal(const Vector& uv) {
-	return remain() * geometry().normal(uv);
+Vector Transform::tangent0(const Vector& uv) {
+	return matrix() * geometry().tangent0(uv);
+}
+
+Vector Transform::tangent1(const Vector& uv) {
+	return matrix() * geometry().tangent1(uv);
 }
 
 Vector Transform::joint(const Vector& uv) {
@@ -13,11 +21,4 @@ Vector Transform::joint(const Vector& uv) {
 }
 
 DefaultTransform::DefaultTransform(const Matrix& m, const std::function<Geometry&()> f):
-	m_geometry(f), m_matrix(m), m_remain(m),
-	m_invertRemain(~m), m_invertMatrix(~m) {
-
-	for(int i = 0; i < 3; i ++)
-		m_remain.m[i][3] = m_remain.m[3][i]
-			= m_invertRemain.m[i][3]
-			= m_invertRemain.m[3][i] = 0;
-}
+	m_geometry(f), m_matrix(m), m_invert(~m) {}

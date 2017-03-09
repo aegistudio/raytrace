@@ -17,7 +17,9 @@ public:
 
 	virtual Maybe<Vector> intersect(const Vector&, const Vector&);
 
-	virtual Vector normal(const Vector&);
+	virtual Vector tangent0(const Vector&);
+
+	virtual Vector tangent1(const Vector&);
 
 	virtual Vector joint(const Vector&);
 };
