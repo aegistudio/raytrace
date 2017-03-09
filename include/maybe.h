@@ -17,15 +17,19 @@ public:
 		_.value = nullptr; // Transfer ownership.
 	}
 
-	virtual ~Maybe() {
+	~Maybe() {
 		if(value) delete value;
 	}
 
-	virtual const T* get(){
+	inline const T* get(){
 		return value;
 	};
 
 	inline const T& operator*() {
 		return *value;
+	}
+
+	bool operator!() {
+		return value == nullptr;
 	}
 };

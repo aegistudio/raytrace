@@ -1,4 +1,5 @@
 include(CTest)
+include(../TestCase)
 enable_testing()
 
 # Define some constants.
@@ -46,3 +47,11 @@ add_test(geometry.matrixTest.translate1 matrixTest
 	"translate" "(1,-1,1)" "translate" "(-1,1,-1)" "(4,4,4)" "(4,4,4)")
 add_test(geometry.matrixTest.rotate0 matrixTest
 	"xRotate" ${PI_3} "(0,1,0)" "(0,0.5,${SQR3_2})")
+
+# Build test driver planeTest.
+add_executable(planeTest common.cpp planeTest.cpp geomtest.cpp)
+target_link_libraries(planeTest geometry)
+
+# Add the tests for plane.
+add_testcasep(geometry planeTest test0)
+add_testcasep(geometry planeTest test1)

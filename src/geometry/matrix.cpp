@@ -26,7 +26,7 @@ double Matrix::determinant3(int dx, int dy) const {
 	#define _MX(i, j, k) _M(0, i)\
 		* (_M(1, j) * _M(2, k) - _M(1, k) * _M(2, j))
 
-	return _MX(0, 1, 2) + _MX(1, 2, 0) + _MX(2, 0, 1);
+	return _MX(0, 1, 2) - _MX(1, 2, 0) + _MX(2, 0, 1);
 	#pragma pop(_MX)
 	#pragma pop(_M)
 }
@@ -34,8 +34,8 @@ double Matrix::determinant3(int dx, int dy) const {
 double Matrix::determinant() const {
 	#pragma push(_DM)
 	#define _DM(x)\
-		m[0][x] * determinant3(0, x);
-	return _DM(0) + _DM(1) + _DM(2) + _DM(3);
+		m[0][x] * determinant3(0, x)
+	return _DM(0) - _DM(1) + _DM(2) - _DM(3);
 	#pragma pop(_DM)
 }
 
@@ -43,8 +43,10 @@ Matrix Matrix::invert() const {
 	double dall = determinant();
 	double result[4][4];
 	for(int i = 0; i < 4; i ++)
-		for(int j = 0; j < 4; j ++)
-			result[j][i] = determinant3(i, j) / dall;
+		for(int j = 0; j < 4; j ++) {
+			int sign = ((i + j) % 2)? -1 : 1;
+			result[j][i] = sign * determinant3(i, j) / dall;
+		}
 	return Matrix(result);
 }
 

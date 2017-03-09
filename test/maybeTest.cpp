@@ -17,7 +17,7 @@ void testJust() {
 
 void testNothing() {
 	Maybe<std::string> test2;
-	ASSERT_NULL(test2.get());
+	ASSERT_TRUE(!test2);
 }
 
 void testFromFunction() {

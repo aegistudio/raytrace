@@ -1,9 +1,10 @@
 enable_testing()
 
-macro(add_testcase_prefix prefix driver name)
-	add_test(${prefix}.${name} ${driver} ${name})
+
+macro(add_testcasep prefix driver name)
+	add_test(${prefix}.${driver}.${name} ${driver} ${name})
 endmacro()
 
 macro(add_testcase driver name)
-	add_testcase_prefix(${driver} ${driver} ${name})
+	add_testcasep("" ${driver} ${name})
 endmacro()

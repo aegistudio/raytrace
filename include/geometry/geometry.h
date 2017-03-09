@@ -19,7 +19,7 @@ public:
 	// Query for the UV coordinate. The UV coordinate
 	// has its own meaning in different geometric body
 	// but should be a map to normal and joint.
-	virtual Maybe<Vector> intersect(Vector vector, Vector origin) = 0;
+	virtual Maybe<Vector> intersect(Vector, Vector = {0,0,0}) = 0;
 
 	// Query for the normal vector.
 	virtual Vector normal(Vector uv) = 0;
