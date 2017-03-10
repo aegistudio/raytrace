@@ -57,5 +57,5 @@ public:
 	static Matrix zRotate(double z);
 
 	// Rebase by specifying three neew axis vector.
-    static Matrix rebase(const Vector&, const Vector&, const Vector&);
+	static Matrix rebase(const Vector&, const Vector&, const Vector&);
 };

@@ -135,11 +135,11 @@ Matrix Matrix::yRotate(double _) {
 }
 
 Matrix Matrix::rebase(const Vector& x, const Vector& y, const Vector& z) {
-    double result[4][4] = {
+	double result[4][4] = {
 		{x.x, x.y, x.z, 0},
 		{y.x, y.y, y.z, 0},
 		{z.x, z.y, z.z, 0},
 		{0,   0,   0,   1}
-    };
-    return Matrix(result).invert();
+	};
+	return Matrix(result).invert();
 }

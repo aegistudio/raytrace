@@ -7,11 +7,9 @@ template<typename T> class Maybe {
 public:
 	Maybe() : value(nullptr) {}
 	Maybe(const T& t) : value(new T(t)){}
-	Maybe(const Maybe& copy) : value(copy.value){
-		// You can't make a deep copy of Maybe,
-		// however you can shift copy it.
-		throw std::logic_error();
-	}
+	Maybe(const Maybe& copy) :
+		value(copy.value == nullptr?
+			nullptr : new T(*(copy.value))) {}
 
 	Maybe(Maybe&& _) : value(_.value) {
 		_.value = nullptr; // Transfer ownership.

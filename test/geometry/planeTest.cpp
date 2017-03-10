@@ -13,7 +13,7 @@ void testNormal() {
 	expectDisjoint(plane, {0, 0, 1}, {0, 0, 1});
 
 	// d = (0, 0, 1), c = (0, 0, -1).
-    expectIntersect(plane, {0, 0, 1}, {0, 0, -1},
+	expectIntersect(plane, {0, 0, 1}, {0, 0, -1},
 		{0, 0, -1}, {0, 0, -1}, {0, 0, 0});
 
 	// d = normalize(1, 1, -1), c = (0, 0, 1).
@@ -29,7 +29,7 @@ void testTransform() {
 	DefaultTransform plane(transform,
 		[&] () -> Geometry& {return fakePlane;});
 
-    expectIntersect(plane, {0, -1, 0}, {0, 1, 0},
+	expectIntersect(plane, {0, -1, 0}, {0, 1, 0},
 		{0, 0, 1}, {0, 1, 0}, {0, 0, 0});
 }
 

@@ -3,6 +3,8 @@
 #include "vector.h"
 #include "../maybe.h"
 
+#include <functional>
+
 /**
  * Defines a geometric body in the space. Which we
  * only concern, when a ray originate from a point
@@ -35,4 +37,38 @@ public:
 
 	// Query for the conjunction point.
 	virtual Vector joint(const Vector& uv) = 0;
+};
+
+/**
+ * When the geometry object takes the role of controlling
+ * calculation for other geometric objects, we shall call
+ * it a delegator.
+ */
+
+typedef std::function<Geometry&()> GeometryDelegate;
+
+class Delegator : public Geometry {
+protected:
+	GeometryDelegate m_delegate;
+public:
+	Delegator(GeometryDelegate delegate)
+		: m_delegate(delegate) {}
+
+	virtual ~Delegator() {}
+
+	virtual Maybe<Vector> intersect(const Vector& d, const Vector& c) {
+		return m_delegate().intersect(d, c);
+	}
+
+	virtual Vector tangent0(const Vector& _) {
+		m_delegate().tangent0(_);
+	}
+
+	virtual Vector tangent1(const Vector& _) {
+		m_delegate().tangent1(_);
+	}
+
+	virtual Vector joint(const Vector& _) {
+		m_delegate().joint(_);
+	}
 };
