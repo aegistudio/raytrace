@@ -8,6 +8,9 @@ project(RayTrace)
 set(CMAKE_CXX_COMPILER_VERSION c++11)
 set(CMAKE_CXX_FLAGS "-std=c++11 -g")
 
+# Default implementation of this library requires.
+find_package(SDL2)
+
 # Define interfaces in the include directory.
 include_directories(include)
 

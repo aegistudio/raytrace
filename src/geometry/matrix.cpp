@@ -61,6 +61,12 @@ Vector Matrix::apply(const Vector& _) const {
 	#pragma pop(_V)
 }
 
+Vector Matrix::applyDirection(const Vector& _) const {
+	Vector origin = apply(Vector(0, 0, 0));
+	Vector deviate = apply(_);
+	return ~(deviate - origin);
+}
+
 Matrix Matrix::multiply(const Matrix& _) const {
 	double result[4][4];
 	for(int i = 0; i < 4; i ++)

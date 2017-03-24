@@ -33,6 +33,12 @@ public:
 		return apply(_);
 	}
 
+	// Apply the transform matrix to a direction.
+	Vector applyDirection(const Vector&) const;
+	inline Vector operator&(const Vector& _) const {
+		return applyDirection(_);
+	}
+
 	// Retrieve the invert transformation.
 	Matrix invert() const;
 	inline Matrix operator~() const {
